@@ -1,6 +1,11 @@
 import numpy as np
 from numpy.polynomial import Polynomial
 
+# x: Lista de los nodos de la interpolación
+# y: Lista de los valores de la interpolación
+# return:
+#   itr: El polinomio de interpolación
+#   L: Lista que contiene los polinomios base
 def lagrange(x, y):
     n = len(x)
     # Calculamos los polinomios base
@@ -16,6 +21,11 @@ def lagrange(x, y):
         itr += y[i] * base
     return itr, L
 
+# x: Lista de los nodos de la interpolación
+# y: Lista de los valores de la interpolación
+# return:  
+#   itr: El polinomio de interpolación
+#   N: Matriz que representa la tabla de diferencias divididas
 def newton(x, y):
     n = len(x)
     N = np.zeros((n, n))
