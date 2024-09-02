@@ -13,7 +13,7 @@ $(BUILD_DIR)/output.pdf: $(IPYNB_MD_FILES) $(MD_FILES)
 
 # Build step for ipynb files
 %_ipynb.md: %.ipynb
-	jupyter nbconvert --to=markdown --output-dir="$(dir $@)" --output="$(shell basename $@ .md)" "$<"
+	jupyter nbconvert --execute --to=markdown --output-dir="$(dir $@)" --output="$(shell basename $@ .md)" "$<"
 
 .PHONY: clean
 clean:
