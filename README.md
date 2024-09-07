@@ -3,6 +3,7 @@
 ## Requirements
 
 - Pandoc
+- TeX Live
 - Jupyter
 
 ## Compilation
