@@ -1,9 +1,9 @@
-# Métodos Numéricos II
+# Pandoc jupyter
 
-## Requisitos
+## Requirements
 
-- Jupyter
 - Pandoc
+- Jupyter
 
 ## Compilation
 
