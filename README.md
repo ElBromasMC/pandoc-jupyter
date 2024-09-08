@@ -6,6 +6,12 @@
 - TeX Live
 - Jupyter
 
+## Requirements for this particular homework
+
+- Numpy
+- Sympy
+- Matplotlib
+
 ## Compilation
 
 ```shell
