@@ -1,5 +1,6 @@
 import numpy as np
 from numpy.polynomial import Polynomial
+from .interpolation import newton
 
 def natural_cubic_spline(X, Y):
     X = np.array(X)
@@ -93,6 +94,17 @@ def conditional_cubic_spline(X, Y, dfa, dfb):
     for i in range(n-1):
         p = A[i] + B[i]*Polynomial([-X[i], 1]) + C[i]*Polynomial([-X[i], 1])**2 + D[i]*Polynomial([-X[i], 1])**3
         CS.append(p)
+    return CS
+
+def lineal_spline(X, Y):
+    X = np.array(X)
+    Y = np.array(Y)
+    n = len(X)
+
+    CS = []
+    for i in range(n-1):
+        itr, _ = newton(X[i:i+2], Y[i:i+2])
+        CS.append(itr)
     return CS
 
 def eval_spline(CS, X, I):
