@@ -9,7 +9,6 @@
 ## Requirements for this particular homework
 
 - Numpy
-- Sympy
 - Matplotlib
 
 ## Compilation
