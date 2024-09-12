@@ -41,3 +41,15 @@ def evenly_error_bound(f_sym, n, a, b):
     error_bound = h**n*M/(4*n)
     
     return error_bound
+
+def m_error_bound(f_sym, n, a, b):
+    x_sym = sp.symbols('x')
+
+    # Calculamos la n derivada de la función
+    nth_derivative = sp.diff(f_sym, x_sym, n)
+    
+    # Calculamos la cota de error
+    M = sp.maximum(nth_derivative, x_sym, sp.Interval(a, b)).evalf()
+    
+    return M
+
