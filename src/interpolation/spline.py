@@ -2,6 +2,10 @@ import numpy as np
 from numpy.polynomial import Polynomial
 from .interpolation import newton
 
+# X: Lista de los nodos de la interpolación
+# Y: Lista de los valores de la interpolación
+# return:
+#   CS: Lista de los trazadores (polinomios cúbicos) para un spline natural
 def natural_cubic_spline(X, Y):
     X = np.array(X)
     Y = np.array(Y)
@@ -44,6 +48,12 @@ def natural_cubic_spline(X, Y):
         CS.append(p)
     return CS
 
+# X: Lista de los nodos de la interpolación
+# Y: Lista de los valores de la interpolación
+# dfa: Valor de la derivada en el extremo izquierdo
+# dfb: Valor de la derivada en el extremo derecho
+# return:
+#   CS: Lista de los trazadores (polinomios cúbicos) para un spline condicionado
 def conditional_cubic_spline(X, Y, dfa, dfb):
     X = np.array(X)
     Y = np.array(Y)
@@ -96,6 +106,10 @@ def conditional_cubic_spline(X, Y, dfa, dfb):
         CS.append(p)
     return CS
 
+# X: Lista de los nodos de la interpolación
+# Y: Lista de los valores de la interpolación
+# return:
+#   CS: Lista de los trazadores (polinomios lineales) para un spline lineal
 def lineal_spline(X, Y):
     X = np.array(X)
     Y = np.array(Y)
@@ -107,6 +121,11 @@ def lineal_spline(X, Y):
         CS.append(itr)
     return CS
 
+# CS: Lista de los trazadores del spline
+# X: Lista de puntos que definen la función a trozos
+# I: Puntos a evaluar por el spline
+# return:
+#   R: Puntos evaluados por el spline
 def eval_spline(CS, X, I):
     X = np.array(X)
     I = np.array(I)
