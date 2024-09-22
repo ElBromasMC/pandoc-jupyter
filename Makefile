@@ -9,7 +9,7 @@ INCLUDE_FILES := $(shell find $(SOURCE_DIR)/include -type f -name '*' -print)
 # The final build step
 $(BUILD_DIR)/output.pdf: $(IPYNB_MD_FILES) $(MD_FILES) $(INCLUDE_FILES)
 	mkdir -p "$(BUILD_DIR)"
-	pandoc -s -f markdown --listings --pdf-engine=pdflatex --template eisvogel.latex \
+	pandoc -s -f markdown --listings --pdf-engine=lualatex --template eisvogel.latex \
 	--resource-path="$(SOURCE_DIR)" -o "$@" $(sort $(IPYNB_MD_FILES) $(MD_FILES))
 
 # Build step for ipynb files
