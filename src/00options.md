@@ -8,6 +8,9 @@ institute: "Universidad Nacional Mayor de San Marcos"
 lang: es-PE
 toc: true
 numbersections: true
+header-includes: |
+    \usepackage{float}
+    \usepackage{graphicx}
 include-before: \input{src/include/cover.tex}
 # Specific to eisvogel
 titlepage: false
