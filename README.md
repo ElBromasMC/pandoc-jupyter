@@ -5,6 +5,7 @@
 - Pandoc
 - TeX Live
 - Jupyter
+- [watchexec](https://github.com/watchexec/watchexec) - For live reload
 
 ## Requirements for this particular homework
 
@@ -15,6 +16,12 @@
 
 ```shell
 $ make -j3 build/output.pdf
+```
+
+## Live reload
+
+```shell
+$ make live
 ```
 
 ## Clean artifacts
