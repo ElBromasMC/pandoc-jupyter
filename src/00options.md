@@ -15,5 +15,5 @@ include-before: \input{src/include/cover.tex}
 # Specific to eisvogel
 titlepage: false
 toc-own-page: true
-footer-left: "Lab 2"
+footer-left: "Lab 5"
 ---
