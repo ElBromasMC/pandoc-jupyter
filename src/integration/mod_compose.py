@@ -8,6 +8,8 @@ def mod_trapezium_method(X, Y):
     a = min(X)
     b = max(X)
     n = len(X) - 1
+    if a == b:
+        return 0
     if n <= 0:
         raise Exception("n debe ser positivo!")
     h = (b - a)/n
@@ -21,6 +23,8 @@ def mod_simpson_method(X, Y):
     a = min(X)
     b = max(X)
     n = len(X) - 1
+    if a == b:
+        return 0
     if n % 2 != 0 or n <= 0:
         raise Exception("n debe ser par y positivo!")
     h = (b - a)/n
@@ -36,6 +40,8 @@ def mod_simpson_3_8_method(X, Y):
     a = min(X)
     b = max(X)
     n = len(X) - 1
+    if a == b:
+        return 0
     if n % 3 != 0 or n <= 0:
         raise Exception(f"n debe ser multiplo de 3 y positivo!")
     h = (b - a)/n
