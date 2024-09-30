@@ -54,14 +54,14 @@ def simpson_3_8_method(f, a, b, n):
     integral = (3*h/8)*sum
     return integral
 
-# Realiza el metodo 1/2 de Simpson y luego el metodo 3/8 de Simpson para los intervalos restantes
+# Realiza el metodo 1/3 de Simpson y luego el metodo 3/8 de Simpson para los intervalos restantes
 def combined_method(f, a, b, n):
     h = (b - a)/n
     r = 3*(n % 2)
     integral = simpson_method(f, a, b - r*h, n - r) + simpson_3_8_method(f, b - r*h, b, r)
     return integral
 
-# Realiza el metodo 3/8 de Simpson y luego el metodo 1/2 de Simpson para los intervalos restantes
+# Realiza el metodo 3/8 de Simpson y luego el metodo 1/3 de Simpson para los intervalos restantes
 def another_combined_method(f, a, b, n):
     h = (b - a)/n
     res = n % 3
