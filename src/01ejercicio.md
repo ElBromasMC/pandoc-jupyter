@@ -1,12 +1,14 @@
 # Análisis cualitativo
 
-## Modelo SIR
+## Modelo SIRS (inmunidad parcial)
+
+El modelo SIRS es un modelo epidemiológico utilizado para describir la propagación de enfermedades infecciosas que no confieren inmunidad permanente. A diferencia del modelo SIR clásico, en el modelo SIRS, los individuos que se recuperan de la enfermedad pueden volver a ser susceptibles después de un tiempo debido a la pérdida de inmunidad. Algunos ejemplos en la vida real son Neumonía bacteriana, Tos ferina y Gripe estacional.
 
 $$
 \left\{
 \begin{split}
-S' &= \alpha N - \alpha S - \beta SI \\
-I' &= \beta SI - \alpha I - \Psi I \\
+S' &= \alpha R - \beta SI \\
+I' &= \beta SI - \Psi I \\
 R' &= \Psi I - \alpha R
 \end{split}
 \right.
@@ -22,18 +24,14 @@ $$
 
     % Nodes
     \node[node basic] (S) at (0, 0) {\(S\)};
-    \node[node basic] (I) at (2, 0) {\(I\)};
+    \node[node basic] (I) at (2, 1) {\(I\)};
     \node[node basic] (R) at (4, 0) {\(R\)};
 
     % Arrows
-    \draw[line basic] ($(S.north) + (0, 1)$) -- (S.north) node[midway, left] {\(\alpha N\)};
-
     \draw[line basic] (S.east) -- (I.west) node[midway, above] {\(\beta\)};
     \draw[line basic] (I.east) -- (R.west) node[midway, above] {\(\Psi\)};
 
-    \draw[line basic] (S.south) -- ($(S.south) - (0, 1)$) node[midway, left] {\(\alpha\)};
-    \draw[line basic] (I.south) -- ($(I.south) - (0, 1)$) node[midway, left] {\(\alpha\)};
-    \draw[line basic] (R.south) -- ($(R.south) - (0, 1)$) node[midway, left] {\(\alpha\)};
+    \draw[line basic] ($(R.west)!0.5!(R.south west)$) -- ($(S.east)!0.5!(S.south east)$) node[midway, below] {\(\alpha\)};
 
 \end{tikzpicture}
 \end{center}
@@ -41,47 +39,25 @@ $$
 
 ### Solución
 
-Sumamos las 3 ecuaciones para despejar la población.
+Sumaremos y veremos como se comporta la población.
 
 $$
 \begin{split}
-(S + I + R)' &= \alpha N - \alpha S - \alpha I - \alpha R \\
-(S + I + R)' &= \alpha (N - (S + I + R)) \\
-N' &= \alpha (N - N) = 0 \\
+(S + I + R)' &= 0 \\
+N' &= 0 \\
 \therefore\quad N &= cte.
 \end{split}
 $$
 
-Como la población es constante, podemos a reducir el sistema a dos ecuaciones.
-
-$$
-\left\{
-\begin{split}
-S' &= \alpha N - \alpha S - \beta SI \\
-I' &= \beta SI - \alpha I - \Psi I
-\end{split}
-\right.
-$$
-
 **Puntos de equilibrio**
 
-Hallaremos los puntos de equilibrio
-
-$$
-\left\{
-\begin{split}
-\alpha N - \alpha S - \beta SI &= 0 \\
-\beta SI - \alpha I - \Psi I &= 0
-\end{split}
-\right.
-$$
-
-De la segunda ecuación:
-
 $$
 \begin{split}
-&I(\beta S - \alpha - \Psi) = 0 \\
-\therefore\quad &I = 0 \quad\lor\quad S = \frac{\alpha + \Psi}{\beta}
+0 &= \alpha R - \beta SI \quad \\
+0 &= \beta SI - \Psi I \quad \\
+0 &= \Psi I - \alpha R \quad \\
+0 &= I\cdot(\beta S - \Psi ) \\
+\Rightarrow \quad  I&=0 \quad\lor\quad S = \frac{\Psi}{\beta}
 \end{split}
 $$
 
@@ -89,41 +65,29 @@ Analicemos ambos casos:
 
 1. Para $I=0$
 
-    $$
-    \begin{split}
-    &\alpha N - \alpha S = 0 \\
-    &\underline{S = N} \\
-    &S + I + R = N \\
-    &\underline{R = 0}
-    \end{split}
-    $$
+    Reemplazando
+    
+    $$0=\alpha R \quad\Rightarrow\quad R = 0$$
+    
+    Sabemos que $N=S+R+I$, entonces
 
-    Por lo tanto, un punto de equilibrio es $(N, 0, 0)$
+    $$N=S+R+I \quad\Rightarrow\quad N = S$$
 
-1. Para $S = \frac{\alpha + \Psi}{\beta}$
+    Un punto de equilibrio es $(N,0,0)$
 
-    $$
-    \begin{split}
-    &\alpha N - \alpha S - \beta SI = 0 \\
-    &I = \frac{\alpha}{\beta}\left(\frac{N}{S} - 1\right) \\
-    &\underline{I = \frac{\alpha}{\beta}\left(\frac{\beta N}{\alpha + \Psi} - 1\right)} \\
-    &R = N - S - I \\
-    &R = N - \frac{\alpha + \Psi}{\beta} - \frac{\alpha N}{\alpha + \Psi} + \frac{\alpha}{\beta} \\
-    &R = \frac{\Psi N}{\alpha + \Psi} - \frac{\Psi}{\beta} \\
-    &\underline{R = \frac{\Psi}{\beta}\left(\frac{\beta N}{\alpha + \Psi} - 1\right)}
-    \end{split}
-    $$
+1. Para $S = \cfrac{\Psi}{\beta}$
 
-    Por lo tanto, un punto de equilibrio es $\left(\frac{\alpha + \Psi}{\beta}, \frac{\alpha}{\beta}\left(\frac{\beta N}{\alpha + \Psi} - 1\right), \frac{\Psi}{\beta}\left(\frac{\beta N}{\alpha + \Psi} - 1\right)\right)$
+    $$0 = \Psi I - \alpha R  \quad\Rightarrow\quad R =\cfrac{\Psi I}{\alpha}$$
+    
+    Sabemos que $N=S+R+I$, entonces
+    
+    $$N=\cfrac{\Psi}{\beta}+\cfrac{\Psi I}{\alpha}+I \quad\Rightarrow\quad \left(N -\frac{\Psi}{\beta}\right)\left(\frac{\alpha}{\alpha + \Psi}\right) = I$$
 
-    Además como $I, R > 0$ se tiene que:
-
-    $$
-    \begin{split}
-        \frac{\beta N}{\alpha + \Psi} - 1 &> 0 \\
-        \frac{\beta N}{\alpha + \Psi} &> 1 \\
-    \end{split}
-    $$
+    Como $I>0$ y las tasas son positivas:
+    
+    $$K_0=N - \frac{\Psi}{\alpha} > 0 \Rightarrow N > \frac{\Psi}{\alpha}$$
+    
+    Un punto de equilibrio es $\left(\cfrac{\Psi}{\beta},K_0\left(\frac{\alpha}{\alpha + \Psi}\right),K_0\left(\frac{\Psi}{\alpha + \Psi}\right)\right)$
 
 **Analicemos su equilibrio con el jacobiano**
 
@@ -133,8 +97,8 @@ $$
 \begin{split}
 J(S, I) =
     \begin{bmatrix}
-        - \alpha - \beta I & - \beta S \\
-        \beta I & \beta S - \alpha - \Psi
+        -\alpha -\beta I  & -\alpha-\beta S \\
+        \beta I & \beta S - \Psi
     \end{bmatrix}
 \end{split}
 $$
@@ -143,55 +107,33 @@ $$
 
     $$
     \begin{split}
-    &J(N, 0) =
+    &A = J(N, 0) =
         \begin{bmatrix}
-            - \alpha & - \beta N \\
-            0 & \beta N - \alpha - \Psi
+            -\alpha & -\alpha - \beta N \\
+            0 & \beta N - \Psi
         \end{bmatrix} \\
-    &tr(J(N. 0)) = - 2\alpha + \beta N - \Psi \\
-    &det(J(N, 0)) = -\alpha(\beta N - (\alpha+\Psi))
+    &det(A) = -\alpha (\beta N - \Psi) < 0
     \end{split}
     $$
 
-    Usando $\frac{\beta N}{\alpha + \Psi} > 1$
+1. Para el segundo punto $\left(\cfrac{\Psi}{\beta},K_0\left(\frac{\alpha}{\alpha + \Psi}\right)\right)$
 
     $$
     \begin{split}
-        tr(J(N, 0)) &> 0 \\
-        det(J(N, 0)) &< 0
-    \end{split}
-    $$
-
-1. Para el segundo punto $\left(\frac{\alpha + \Psi}{\beta}, \frac{\alpha}{\beta}\left(\frac{\beta N}{\alpha + \Psi} - 1\right)\right)$
-
-    Sean $K_0 = \frac{\beta N}{\alpha + \Psi} - 1$
-
-    $$
-    \begin{split}
-    &A = J\left(\frac{\alpha + \Psi}{\beta}, \frac{\alpha}{\beta}K_0\right) =
+    &A = J\left(\cfrac{\Psi}{\beta},K_0\left(\frac{\alpha}{\alpha + \Psi}\right)\right) =
         \begin{bmatrix}
-            -\alpha(K_0+1)  & -(\alpha +\Psi) \\
-            \alpha K_0 & 0
+            -\alpha - \cfrac{\beta\alpha K_0}{\alpha + \Psi} &  -\alpha-\Psi\\
+            \cfrac{\beta\alpha K_0}{\alpha + \Psi} & 0
         \end{bmatrix} \\
-    &tr(A) = -\alpha(K_0+1) \\
-    &det(A) = (\alpha K_0)(\alpha+\Psi) \\
+    &tr(A) = -\alpha\left(1+\cfrac{\beta K_0}{\alpha + \Psi}\right) < 0 \\
+    &det(A) = \beta\alpha K_0 > 0 \\
     &\Delta = \alpha^2(K_0+1)^2 - 4\alpha K_0(\alpha+\Psi)
-    \end{split}
-    $$
-
-    Usando $\frac{\beta N}{\alpha + \Psi} > 1$
-
-    $$
-    \begin{split}
-        tr(J(N, 0)) &< 0 \\
-        det(J(N, 0)) &> 0
     \end{split}
     $$
 
 ### Conclusiones
 
-1. En el punto de equilibrio $(N;0;0)$ observamos que la $det(A) < 0$ y $tr(A) > 0 $ por lo tanto es un **punto silla**.
-1. En el punto de equilibrio $\left( \cfrac{\alpha + \Psi}{\beta}; \quad \left(\cfrac{\alpha} {\beta}\right)K_0; \quad\left(\cfrac{\Psi}{\beta}\right)K_0 \right)$, observamos que con la $det(A)> 0$ y $tr(A) < 0 $  llegamos a que es un **punto estable**. Pero para saber más sobre su naturaleza, debemos saber si $\Delta$ es mayor, menor o igual a 0.
-    - Si $\Delta > 0$ el punto es **nodo**
-    - Si $\Delta < 0$ el punto es **espiral**
-    - Si $\Delta = 0$ el punto es **degenerado**
+1. En el nodo $(N,0,0)$, ya que $det(A) < 0$, se mostró que es un **punto silla**.
+1. En el nodo $\left(\cfrac{\Psi}{\beta},K_0\left(\frac{\alpha}{\alpha + \Psi}\right),K_0\left(\frac{\Psi}{\alpha + \Psi}\right)\right)$, ya que $tr(A) < 0$, se mostró que es un **punto estable**.
+
+\newpage

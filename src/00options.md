@@ -7,7 +7,7 @@ institute: "Universidad Nacional Mayor de San Marcos"
 # keywords: []
 lang: es-PE
 toc: true
-numbersections: false
+numbersections: true
 header-includes: |
     \usepackage{tikz}
     \usetikzlibrary{calc}
