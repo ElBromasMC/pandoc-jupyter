@@ -1,5 +1,6 @@
 **/__pycache__/
 .venv
 build/
+tmp/
 *_ipynb.md
 *_ipynb_files/
