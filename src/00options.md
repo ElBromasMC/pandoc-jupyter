@@ -8,6 +8,9 @@ institute: "Universidad Nacional Mayor de San Marcos"
 lang: es-PE
 toc: true
 numbersections: false
+header-includes: |
+    \usepackage{tikz}
+    \usetikzlibrary{calc}
 # Specific to eisvogel
 titlepage: true
 toc-own-page: true
