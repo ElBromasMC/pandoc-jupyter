@@ -1,13 +1,13 @@
 ---
-title: "Resolución de problemas"
-# subtitle: ""
-# author: ["Ander Linares"]
+title: "Primera Práctica Calificada"
+subtitle: "Sistemas Operativos"
+author: ["Ander Linares"]
 # date: \today{}
 institute: "Universidad Nacional Mayor de San Marcos"
 # keywords: []
 lang: es-PE
-toc: true
-numbersections: true
+toc: false
+numbersections: false
 header-includes: |
     \usepackage{float}
     \usepackage{graphicx}
