@@ -6,7 +6,7 @@ title: "Resolución de problemas"
 institute: "Universidad Nacional Mayor de San Marcos"
 # keywords: []
 lang: es-PE
-toc: true
+toc: false
 numbersections: true
 header-includes: |
     \usepackage{float}
