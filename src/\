@@ -1,0 +1,44 @@
+# Ejercicio 4
+
+## Modelo matemático
+
+$$
+\alpha'' + k_1\alpha' + k_2\sin(\alpha) = 0
+$$
+
+## Resolución analítica
+
+Simplifiquemos la EDO de segundo orden a una EDO de primer order pero de
+dos dimensiones.
+
+Declaramos dos variables.
+
+$$
+\begin{split}
+x_1 &= \alpha \\
+x_2 &= \alpha' \\
+\end{split}
+$$
+
+Además, se tiene que:
+
+$$
+\begin{split}
+x_1' &= \alpha' \\
+x_1' &= x_2 \\
+x_2' &= -k_1\alpha' - k_2\sin(\alpha) \\
+x_2' &= -k_1x_2 - k_2\sin(x_1) \\
+\end{split}
+$$
+
+Por lo tanto:
+
+$$
+\left\{
+\begin{split}
+x_1' &= x_2 \\
+x_2' &= -k_1x_2 - k_2\sin(x_1) \\  
+\end{split}
+\right.
+$$
+

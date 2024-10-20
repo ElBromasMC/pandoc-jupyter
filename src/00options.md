@@ -1,5 +1,5 @@
 ---
-title: "Resolución de problemas"
+title: "Resolución de las EDO"
 # subtitle: ""
 author: ["Ander Linares"]
 date: \today{}
@@ -20,6 +20,4 @@ include-before: \input{src/include/cover.tex}
 # Specific to eisvogel
 titlepage: false
 toc-own-page: true
-footer-left: true
-footer-right: true
 ---

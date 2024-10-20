@@ -10,6 +10,7 @@ INCLUDE_FILES := $(shell find $(SOURCE_DIR)/include -type f -name '*' -print)
 $(BUILD_DIR)/output.pdf: $(IPYNB_MD_FILES) $(MD_FILES) $(INCLUDE_FILES)
 	mkdir -p "$(BUILD_DIR)"
 	pandoc -s -f markdown --listings --pdf-engine=pdflatex --template eisvogel.latex \
+	--lua-filter=include-code-files.lua \
 	--resource-path="$(SOURCE_DIR)" -o "$@" $(sort $(IPYNB_MD_FILES) $(MD_FILES))
 
 # Build step for ipynb files
