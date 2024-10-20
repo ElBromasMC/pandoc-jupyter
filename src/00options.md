@@ -1,8 +1,8 @@
 ---
-title: "Resolución de problemas"
+title: "Análisis cualitativo"
 # subtitle: ""
-# author: ["Ander Linares"]
-# date: \today{}
+author: ["Ander Linares"]
+date: \today{}
 institute: "Universidad Nacional Mayor de San Marcos"
 # keywords: []
 lang: es-PE
