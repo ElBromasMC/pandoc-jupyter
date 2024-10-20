@@ -1,8 +1,8 @@
 ---
 title: "Resolución de problemas"
 # subtitle: ""
-# author: ["Ander Linares"]
-# date: \today{}
+author: ["Ander Linares"]
+date: \today{}
 institute: "Universidad Nacional Mayor de San Marcos"
 # keywords: []
 lang: es-PE
@@ -20,5 +20,6 @@ include-before: \input{src/include/cover.tex}
 # Specific to eisvogel
 titlepage: false
 toc-own-page: true
-# footer-left: "Lab 3"
+footer-left: true
+footer-right: true
 ---
