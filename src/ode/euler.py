@@ -60,3 +60,36 @@ def heun_method(f, y0, a, b, n):
 
     return t, y
 
+def runge_kutta_method(f, y0, a, b, n):
+    """
+    f: Función que representa la derivada de la función en un punto y momento
+    concreto. Tiene de argumentos (y, t) respectivamente.
+    y0: Valor inicial de la función en 'a'.
+    a, b: Intervalo de tiempo.
+    n: Número de intervalos a utilizar.
+    """
+    # Normalizamos la entrada
+    y0 = np.array(y0)
+    
+    # Inicializamos variables y matrices
+    dim = len(y0)
+    h = (b - a)/n
+    t = np.linspace(a, b, n+1)
+    y = np.zeros((n+1, dim))
+
+    # Valor inicial
+    y[0,:] = y0
+
+    # Iteramos los valores restantes
+    for i in range(1, n+1):
+        t_prev = t[i-1]
+        t_curr = t[i]
+        y_prev = y[i-1,:]
+        k_1 = np.array(f(y_prev, t_prev))
+        k_2 = np.array(f(y_prev + h/2*k_1, t_prev + h/2))
+        k_3 = np.array(f(y_prev + h/2*k_2, t_prev + h/2))
+        k_4 = np.array(f(y_prev + h*k_3, t_curr))
+        y[i,:] = y_prev + h/6*(k_1 + 2*k_2 + 2*k_3 + k_4)
+
+    return t, y
+
