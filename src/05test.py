@@ -5,7 +5,8 @@ from ode import general_runge_kutta_method, runge_fourth_order
 
 def right_side(arg, t):
     x, y = arg
-    dxdy = [-y + t, x - t]
+    dxdy = [-y + t, 
+            x - t]
     return dxdy
 
 y0 = [-3, 5]
