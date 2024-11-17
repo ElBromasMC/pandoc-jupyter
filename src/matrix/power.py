@@ -24,7 +24,7 @@ def power_method(matrix, vector, iterations=4):
 
     for i in range(iterations):
         x1 = matrix.dot(vector)
-        print(f"x{i+1}: {x1}\n")
+        # print(f"x{i+1}: {x1}\n")
         n = float(max(abs(x1)).item())
         
         #redondeo a 6 decimales
