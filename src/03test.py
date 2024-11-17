@@ -11,7 +11,8 @@ def right_side(y, t, k1, k2):
     return:
     dydt: La derivada de y evaluada en t
     """
-    dydt = [y[1], -k1*y[1] - k2*np.sin(y[0])]
+    dydt = [y[1], 
+            -k1*y[1] - k2*np.sin(y[0])]
     return dydt
 
 # Nuestra condición inicial
@@ -24,8 +25,10 @@ t = np.linspace(a, b, 301)
 sol = odeint(right_side, y0, t, args=(k1,k2)) 
 
 # Usamos nuestra función para resolver la EDO
-t_heun, sol_heun = heun_method(lambda y, t : right_side(y,t,k1,k2), y0, 0, 100, 300)
-t_runge, sol_runge = runge_kutta_method(lambda y, t : right_side(y,t,k1,k2), y0, 0, 100, 300)
+# Se define la función anonima para pasarle solo dos parametros
+f_anon = lambda y, t : right_side(y,t,k1,k2)
+t_heun, sol_heun   = heun_method(f_anon, y0, 0, 100, 300)
+t_runge, sol_runge = runge_kutta_method(f_anon, y0, 0, 100, 300)
 
 # Graficamos las soluciones
 fig, axs = plt.subplots(2,2)
