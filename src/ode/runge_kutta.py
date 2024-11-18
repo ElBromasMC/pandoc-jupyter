@@ -32,10 +32,21 @@ def general_runge_kutta_method(phi, f_, y0, a, b, n):
 
     return t, y
 
+
+
+def runge_third_order(f, h, y, t):
+    k1 = h*f(y, t) 
+    k2 = h*f(y + k1/2, t + h/2)
+    k3 = h*f(y - k1 + 2*k2, t + h)
+    res = (1/6)*(k1 + 4*k2 + k3)
+
+    return res
+
 def runge_fourth_order(f, h, y, t):
     k1 = h*f(y, t)
     k2 = h*f(y + k1/2, t + h/2)
     k3 = h*f(y + k2/2, t + h/2)
     k4 = h*f(y + k3, t + h)
-    res = 1/6*(k1 + 2*k2 + 2*k3 + k4)
+    res = (1/6)*(k1 + 2*k2 + 2*k3 + k4)
+    
     return res
