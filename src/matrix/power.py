@@ -82,3 +82,57 @@ def aitken_acceleration(r):
             break
             
     return s
+
+
+
+def inver_power_translation(alpha, matrix, vector, iterations=4):
+    """
+    Función que realiza el método de la potencia inversa con un desplazamiento 
+    para aproximar el valor propio más pequeño de una matriz. La función itera 
+    para refinar el valor propio y el vector propio asociado.
+
+    Parámetros:
+    - alpha: float, el desplazamiento aplicado a la matriz para mejorar la convergencia.
+    - matrix: arreglo n-dimensional, la matriz de la cual se desea encontrar el valor propio más pequeño.
+    - vector: arreglo unidimensional, el vector inicial para el proceso de iteración.
+    - iterations: int, opcional (por defecto es 4), el número de iteraciones a realizar.
+
+    Retorna:
+    - l1: float, la estimación del valor propio.
+    - vect: arreglo 1D, el vector propio asociado con el valor propio más pequeño.
+    """
+    # Obtiene la dimensión de la matriz
+    n = len(matrix)
+    
+    # Desplaza la matriz restando alpha en la diagonal y luego la invierte
+    matrix = matrix - alpha * np.identity(n)
+    matrix = np.linalg.inv(matrix)
+    
+    # Inicializa listas para almacenar valores propios y vectores propios en cada iteración
+    C = []
+    xi = []
+
+    # Realiza el número especificado de iteraciones
+    for _ in range(iterations):
+        # Multiplica la matriz por el vector
+        x1 = matrix.dot(vector)
+        
+        # Encuentra el valor absoluto más grande en x1 para escalar
+        n = float(max(abs(x1)).item())
+        
+        # Ajusta el signo de n si no está en x1
+        if n not in x1:
+            n = -n    
+                
+        # Normaliza el vector y redondea para estabilidad
+        vector = np.round(x1 / n, 6)
+        
+        # Almacena la aproximación del valor propio y vector propio en esta iteración
+        C.append(n)
+        xi.append(vector)
+    
+    # Calcula la aproximación final del valor propio usando el inverso del último factor de escala
+    eigenvalue = round((1 / C[-1]) + alpha)
+    eigenvector = xi[-1]
+    
+    return eigenvalue, eigenvector
