@@ -84,6 +84,7 @@ def aitken_acceleration(r):
     return s
 
 
+
 def inver_power_translation(alpha, matrix, vector, iterations=4):
     """
     Función que realiza el método de la potencia inversa con un desplazamiento 
